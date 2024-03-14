@@ -1,4 +1,18 @@
-<?php include 'header.php' ?>
+<?php
+include 'header.php';
+session_start();
+if ($_POST['action'] == 'Login') {
+  if (preg_match('/^[a-zA-Z0-9\W]+$/', $_POST['username'])) {
+    $_SESSION['loginData'] = $_POST;
+    header('Location: ../controllers/user/user_proc.php');
+  } elseif (preg_match("/^Admin/", $_POST['username'])) {
+    $_SESSION['loginData'] = $_POST;
+    header('Location: ../controllers/admin/admin_proc.php');
+  } else {
+    header('Location: login.php');
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +29,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="header-text">
-            <h2>Student Login</h2>
+            <h2>Login</h2>
             <div class="div-dec"></div>
           </div>
         </div>
@@ -29,7 +43,7 @@
         <div class="col-lg-6 offset-lg-3">
         </div>
         <div class="col-lg-10 offset-lg-1">
-          <form id="contact" action="" method="post">
+          <form id="contact" method="post">
             <div class="row">
               <div class="col-lg-6">
                 <fieldset>
@@ -43,7 +57,7 @@
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">Login</button>
+                  <input type="submit" id="form-submit" class="orange-button" name="action" value="Login">
                 </fieldset>
               </div>
             </div>

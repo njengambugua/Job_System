@@ -29,3 +29,7 @@ CREATE TABLE job_applications (
         'pending', 'rejected', 'hired'
     ) NOT NULL DEFAULT 'pending', application_date DATETIME, PRIMARY KEY (id), FOREIGN KEY (job_id) REFERENCES job_postings (id) ON DELETE CASCADE, FOREIGN KEY (applicant_id) REFERENCES applicants (id) ON DELETE CASCADE
 );
+
+CREATE TABLE users (
+    id INT(11) AUTO_INCREMENT, username VARCHAR(255), password VARCHAR(255), applicant_id INT(11), FOREIGN KEY (applicant_id) REFERENCES applicant (id) ON DELETE CASCADE, PRIMARY KEY (id)
+) ;

@@ -1,17 +1,19 @@
 <?php
-include('../../DB.php');
-include('../../models/applicant/applicant_class.php');
-$obj = (object)$_POST;
-$_SESSION['obj'] = $obj;
-
+include("../../DB.php");
+include("../../models/applicant/applicant_class.php");
 $newApplicant = new applicant();
+$obj = (object)$_SESSION['userdata'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if ($_POST['action'] == 'Register') {
+print_r($_SESSION['userdata']);
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+  if (isset($_GET['user_id'])) {
+    $obj->user_id =  $_GET["user_id"];
     if ($newApplicant->create($obj)) {
       header('Location: ../../php/applicant/applicant.php');
-    } else {
+    } else{
       header('Location: ../../php/register.php');
     }
   }
 }
+?>

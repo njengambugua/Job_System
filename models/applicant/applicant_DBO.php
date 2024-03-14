@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
 
 class applicant_DBO
 {
@@ -8,6 +9,10 @@ class applicant_DBO
   public  $execute;
   private $conn;
   public $lastInsertId;
+  public $error;
+  public $res;
+  public $stmt;
+  public $numRows;
 
   public function __construct()
   {
@@ -18,20 +23,41 @@ class applicant_DBO
   function insert($obj)
   {
     try {
-      $studentQuery = "INSERT INTO applicant(firstname, lastname, username, email, phone, password) VALUES(:firstname, :lastname, :username, :email, :phone, :password)";
-      $stmt = $this->conn->prepare($studentQuery);
-      $stmt->bindParam(':firstname', $obj->firstname);
-      $stmt->bindParam(':lastname', $obj->lastname);
-      $stmt->bindParam(':username', $obj->username);
-      $stmt->bindParam(':email', $obj->email);
-      $stmt->bindParam(':phone', $obj->phone);
-      $stmt->bindParam(':password', $obj->password);
+      $this->query = "INSERT INTO applicant(firstname, lastname, email, phone, user_id) VALUES(:firstname, :lastname, :email, :phone, :user_id)";
+      $this->stmt = $this->conn->prepare($this->query);
+      $this->stmt->bindParam(':firstname', $obj->firstname);
+      $this->stmt->bindParam(':lastname', $obj->lastname);
+      $this->stmt->bindParam(':email', $obj->email);
+      $this->stmt->bindParam(':phone', $obj->phone);
+      $this->stmt->bindParam(':user_id', $obj->user_id);
 
-      $stmt->execute();
+      $this->stmt->execute();
       $this->lastInsertId = $this->conn->lastInsertId();
       $_SESSION['applicant_id'] = $this->lastInsertId;
       return true;
-    } catch (\Throwable $th) {
+    } catch (PDOException $e) {
+      $this->error = $e->getMessage();
+      return false;
+    }
+  }
+
+  function select($obj)
+  {
+    try {
+      if (isset($obj)) {
+        $this->query = "SELECT * FROM applicant WHERE username = :username AND password = :password";
+        $this->stmt = $this->conn->prepare($this->query);
+        $this->stmt->bindParam(':username', $obj->username);
+        $this->stmt->bindParam(':password', $obj->password);
+        $this->stmt->execute();
+        $this->res = $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        $this->numRows = $this->stmt->rowCount();
+      } else {
+        $this->query = "SELECT * FROM applicant";
+        $this->res = $this->conn->query($this->query);
+      }
+    } catch (PDOException $e) {
+      $this->error = $e->getMessage();
       return false;
     }
   }
