@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="header-text">
-            <h2>Student Registration</h2>
+            <h2>Registration</h2>
             <div class="div-dec"></div>
           </div>
         </div>
@@ -26,7 +26,7 @@
   <section class="contact-us-form mb-3">
     <div class="container">
       <div class="col-lg-10 offset-lg-1">
-        <form id="contact" action="" method="post">
+        <form id="contact" action="../controllers/applicant/applicant_proc.php" method="post">
           <div class="row">
             <div class="col-lg-6">
               <fieldset>
@@ -45,12 +45,22 @@
             </div>
             <div class="col-lg-6">
               <fieldset>
+                <label for="email">Email:</label><input type="email" name="email" id="email" required="">
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset>
+                <label for="phone">Phone Number:</label><input type="text" name="phone" id="phone" required="">
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset>
                 <label for="password">Password:</label><input type="password" name="password" id="password">
               </fieldset>
             </div>
             <div class="col-lg-12">
               <fieldset>
-                <button type="submit" id="form-submit" class="orange-button">Register</button>
+                <input type="submit" id="form-submit" class="orange-button" name="action" value="Register">
               </fieldset>
             </div>
           </div>

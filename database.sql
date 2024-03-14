@@ -12,8 +12,8 @@ CREATE TABLE job_postings (
 
 DROP TABLE IF EXISTS `applicants`;
 
-CREATE TABLE applicants (
-    id INT(11) AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), email VARCHAR(255) UNIQUE, phone VARCHAR(255), application_date DATETIME, PRIMARY KEY (id)
+CREATE TABLE applicant (
+    id INT(11) AUTO_INCREMENT, firstname VARCHAR(255), lastname VARCHAR(255), username VARCHAR(255), email VARCHAR(255) UNIQUE, phone VARCHAR(255), password VARCHAR(255), PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS `resumes`;
