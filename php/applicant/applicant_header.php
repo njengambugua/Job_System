@@ -18,7 +18,7 @@
               <img src="../../images/logo.png" alt="">
             </a>
             <ul class="nav">
-              <li class="scroll-to-section"><a href="../../index.php">Home</a></li>
+              <li class="scroll-to-section"><a href="applicant.php">Home</a></li>
               <li class="scroll-to-section"><a href="../about.php">Career Tips</a></li>
               <li class="has-sub">
                 <a href="javascript:void(0)">Pages</a>
