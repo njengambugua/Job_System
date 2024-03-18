@@ -211,7 +211,7 @@
                         <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                       </div>
                       <div class="job-tittle job-tittle2">
-                        <a href="#">
+                        <a href="applicant_job_details.php">
                           <h4>Digital Marketer</h4>
                         </a>
                         <ul>
@@ -222,7 +222,7 @@
                       </div>
                     </div>
                     <div class="items-link items-link2 f-right">
-                      <a href="job_details.html">Full Time</a>
+                      <a href="applicant_job_details.html">Full Time</a>
                       <span>7 hours ago</span>
                     </div>
                   </div>

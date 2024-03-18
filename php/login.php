@@ -5,7 +5,8 @@ if ($_POST['action'] == 'Login') {
   if (preg_match('/^[a-zA-Z0-9\W]+$/', $_POST['username'])) {
     $_SESSION['loginData'] = $_POST;
     header('Location: ../controllers/user/user_proc.php');
-  } elseif (preg_match("/^Admin/", $_POST['username'])) {
+  } 
+  if (preg_match("/^Admin/", $_POST['username'])) {
     $_SESSION['loginData'] = $_POST;
     header('Location: ../controllers/admin/admin_proc.php');
   } else {
