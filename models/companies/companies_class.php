@@ -3,13 +3,12 @@ include('companies_DBO.php');
 
 class Company
 {
-  public $comp_name;
   public $industry;
   public $location;
   public $website;
   public $description;
   public $email;
-  public $password;
+  public $user_id;
   public $lastInsertId;
   public $error;
   public $compObject;
@@ -28,13 +27,12 @@ class Company
   {
     $this->obj = new stdClass;
     // $this->obj->id = $obj->id;
-    $this->obj->comp_name = $obj->comp_name;
     $this->obj->industry = $obj->industry;
     $this->obj->location = $obj->location;
     $this->obj->website = $obj->website;
     $this->obj->description = $obj->description;
     $this->obj->email = $obj->email;
-    $this->obj->password = $obj->password;
+    $this->obj->user_id = $obj->user_id;
   }
 
   function getObj()
@@ -48,6 +46,18 @@ class Company
     $this->getObj();
     if ($this->compObject->insert($obj)) {
       $this->lastInsertId = $this->compObject->lastInsertId;
+      return true;
+    } else {
+      $this->error = $this->compObject->error;
+      return false;
+    }
+  }
+
+  function retrieve($obj)
+  {
+    if ($this->compObject->select($obj)) {
+      $this->data = $this->compObject->res;
+      $this->numRows = $this->compObject->numRows;
       return true;
     } else {
       $this->error = $this->compObject->error;

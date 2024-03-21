@@ -17,6 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header("Location: ../../php/register.php?error=" . $_SESSION['error']);
     }
   }
+
+  if ($_POST['action'] == 'Create Company') {
+    if ($user->create($obj)) {
+      $_SESSION['lastId'] = $user->lastInsertId;
+      header("Location: ../companies/companies_proc.php?user_id=" . $_SESSION['lastId']);
+    } else {
+      $_SESSION['error'] = $user->error;
+      header("Location: ../../php/register.php?error=" . $_SESSION['error']);
+    }
+  }
 }
 
 if (isset($_SESSION['loginData']) && $_SESSION['loginData']['action'] == 'Login') {

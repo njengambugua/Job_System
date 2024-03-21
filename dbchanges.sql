@@ -23,4 +23,11 @@ ALTER TABLE applicant ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE C
 
 ALTER TABLE companies ADD COLUMN company_email VARCHAR(255);
 
-ALTER TABLE companies ADD COLUMN password VARCHAR(255);
+ALTER TABLE companies DROP COLUMN password;
+
+ALTER TABLE companies DROP COLUMN name;
+
+ALTER TABLE companies ADD COLUMN user_id INT(11);
+
+ALTER TABLE companies
+ADD FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE;

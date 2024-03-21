@@ -20,11 +20,11 @@
     <section class="contact-us-form mb-3">
       <div class="container">
         <div class="col-lg-10 offset-lg-1">
-          <form id="contact" action="../../controllers/companies/companies_proc.php" method="post">
+          <form id="contact" action="../../controllers/user/user_proc.php" method="post">
             <div class="row">
               <div class="col-lg-6">
                 <fieldset>
-                  <label for="comp_name">Company Name:</label><input type="text" name="comp_name" id="comp_name" required>
+                  <label for="username">Company Name:</label><input type="text" name="username" id="username" required>
                 </fieldset>
               </div>
               <div class="col-lg-6">
@@ -59,7 +59,7 @@
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="submit" id="form-submit" class="orange-button" name="action" value="Register">
+                  <input type="submit" id="form-submit" class="orange-button" name="action" value="Create Company">
                 </fieldset>
               </div>
             </div>

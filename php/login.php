@@ -2,15 +2,21 @@
 include 'header.php';
 session_start();
 if ($_POST['action'] == 'Login') {
-  if (preg_match('/^[a-zA-Z0-9\W]+$/', $_POST['username'])) {
-    $_SESSION['loginData'] = $_POST;
-    header('Location: ../controllers/user/user_proc.php');
-  } 
   if (preg_match("/^Admin/", $_POST['username'])) {
     $_SESSION['loginData'] = $_POST;
     header('Location: ../controllers/admin/admin_proc.php');
+    exit;
+  } elseif (preg_match('/(?:Co\.|Org\.)$/', $_POST['username'])) {
+    $_SESSION['loginData'] = $_POST;
+    header('Location: ../controllers/companies/companies_proc.php');
+    exit;
+  } elseif (preg_match('/^[a-zA-Z0-9\W]+$/', $_POST['username'])) {
+    $_SESSION['loginData'] = $_POST;
+    header('Location: ../controllers/user/user_proc.php');
+    exit;
   } else {
     header('Location: login.php');
+    exit;
   }
 }
 ?>
