@@ -1,4 +1,8 @@
-<?php include 'applicant_header.php' ?>
+<?php
+include 'applicant_header.php';
+session_start();
+$job_data = (object)$_SESSION['job_data'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,29 +122,6 @@
                     </select>
                   </div>
                   <!--  Select job items End-->
-                  <!-- select-Categories start -->
-                  <div class="select-Categories pt-80 pb-50">
-                    <div class="small-section-tittle2">
-                      <h4>Experience</h4>
-                    </div>
-                    <label class="container">1-2 Years
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">2-3 Years
-                      <input type="checkbox" checked="checked active">
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">3-6 Years
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">6-more..
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  <!-- select-Categories End -->
                 </div>
                 <!-- single three -->
                 <div class="single-listing">
@@ -205,27 +186,56 @@
                   </div>
                   <!-- Count of Job list End -->
                   <!-- single-job-content -->
-                  <div class="single-job-items mb-30">
-                    <div class="job-items">
-                      <div class="company-img">
-                        <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                  <?php foreach ($job_data as $job) { ?>
+
+
+                    <div class="single-job-items mb-30">
+                      <div class="job-items">
+                        <div class="company-img">
+                          <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                        </div>
+                        <div class="job-tittle job-tittle2">
+                          <a href="../../controllers/job_post/job_proc.php?title=<?php echo $job->title; ?>">
+                            <h4><?php echo $job->title ?></h4>
+                          </a>
+                          <ul>
+                            <li><?php echo $job->username ?></li>
+                            <li><i class="fas fa-map-marker-alt"></i><?php echo $job->location ?></li>
+                            <li>$<?php echo $job->salary ?></li>
+                          </ul>
+                        </div>
                       </div>
-                      <div class="job-tittle job-tittle2">
-                        <a href="applicant_job_details.php">
-                          <h4>Digital Marketer</h4>
-                        </a>
-                        <ul>
-                          <li>Creative Agency</li>
-                          <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                          <li>$3500 - $4000</li>
-                        </ul>
+                      <div class="items-link items-link2 f-right">
+                        <a href="applicant_job_details.html"><?php echo $job->job_type ?></a>
+                        <span>
+                          <?php
+                          $createdAt = new DateTime($job->posted_date);
+                          $currentDateTime = new DateTime();
+                          $interval = $createdAt->diff($currentDateTime);
+
+                          if ($interval->y > 0) {
+                            $diffForHumans = $interval->y . " year";
+                          } elseif ($interval->m > 0) {
+                            $diffForHumans = $interval->m . " month";
+                          } elseif ($interval->d > 0) {
+                            $diffForHumans = $interval->d . " day";
+                          } elseif ($interval->h > 0) {
+                            $diffForHumans = $interval->h . " hour";
+                          } elseif ($interval->i > 0) {
+                            $diffForHumans = $interval->i . " minute";
+                          } elseif ($interval->s > 0) {
+                            $diffForHumans = $interval->s . " second";
+                          } else {
+                            $diffForHumans = "Just now";
+                          }
+
+                          $diffForHumans .= ($diffForHumans != "Just now" && $diffForHumans != "1 second") ? "s ago" : " ago";
+                          echo $diffForHumans;
+                          ?>
+                        </span>
                       </div>
                     </div>
-                    <div class="items-link items-link2 f-right">
-                      <a href="applicant_job_details.html">Full Time</a>
-                      <span>7 hours ago</span>
-                    </div>
-                  </div>
+                  <?php } ?>
                   <!-- single-job-content -->
                 </div>
               </section>
