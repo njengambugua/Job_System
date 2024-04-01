@@ -1,6 +1,10 @@
 <?php
 include 'applicant_header.php';
 session_start();
+if (!isset($_SESSION['userdata']->id)) {
+  header("Location: ../login.php");
+  exit();
+}
 $job_data = (object)$_SESSION['job_data'];
 ?>
 <!DOCTYPE html>
@@ -169,7 +173,7 @@ $job_data = (object)$_SESSION['job_data'];
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="count-job mb-35">
-                        <span>39, 782 Jobs found</span>
+                        <span>2 Jobs found</span>
                         <!-- Select job items start -->
                         <div class="select-job-items">
                           <span>Sort by</span>
@@ -192,7 +196,7 @@ $job_data = (object)$_SESSION['job_data'];
                     <div class="single-job-items mb-30">
                       <div class="job-items">
                         <div class="company-img">
-                          <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                          <a href="#"><img src="../../images/job-list1.png" alt=""></a>
                         </div>
                         <div class="job-tittle job-tittle2">
                           <a href="../../controllers/job_post/job_proc.php?title=<?php echo $job->title; ?>">

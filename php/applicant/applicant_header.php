@@ -20,24 +20,19 @@
             <ul class="nav">
               <li class="scroll-to-section"><a href="applicant.php">Home</a></li>
               <li class="scroll-to-section"><a href="../about.php">Career Tips</a></li>
+              <li class="scroll-to-section"><a href="applicant_applications.php">My Applications</a></li>
               <li class="has-sub">
-                <a href="javascript:void(0)">Pages</a>
-                <ul class="sub-menu">
-                  <li><a href="../about.php">About Us</a></li>
-                  <li><a href="../contact.php">Contact Us</a></li>
-                </ul>
-              </li>
-              <li>
                 <a href="javascript:void(0)">
                   <div class="top-nav">
                     <div class="avatar-holder">
                       <img src="../../images/yellow_grt.jpg" alt="profile image" />
                     </div>
-                    <div class="avatar-name">
-                      <p>Marcos</p>
-                    </div>
                   </div>
                 </a>
+                <ul class="sub-menu">
+                  <li><a href="applicant_profile.php">Profile</a></li>
+                  <li><a href="../logout.php">Logout</a></li>
+                </ul>
               </li>
             </ul>
             <a class='menu-trigger'>

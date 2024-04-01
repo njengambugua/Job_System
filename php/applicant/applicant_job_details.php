@@ -2,6 +2,7 @@
 include('applicant_header.php');
 session_start();
 $job_data = (object)$_SESSION['job_data'];
+$user_id = $_SESSION['user_id'];
 foreach ($job_data as $job) {
 }
 ?>
@@ -54,7 +55,7 @@ foreach ($job_data as $job) {
           <div class="single-job-items mb-50">
             <div class="job-items">
               <div class="company-img company-img-details">
-                <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                <a href="#"><img src="../../images/job-list1.png" alt=""></a>
               </div>
               <div class="job-tittle">
                 <a href="#">
@@ -110,7 +111,7 @@ foreach ($job_data as $job) {
               <li>Salary : <span>$<?php echo $job->salary ?></span></li>
             </ul>
             <div class="apply-btn2">
-              <button href="#" class="btn">Apply Now</button>
+              <a href="../../controllers/job_application/job_apply_proc.php?user_id=<?php echo $_SESSION['user_id'] ?>&job_id=<?php echo $job->id ?>" class="btn">Apply Now</a>
             </div>
           </div>
         </div>

@@ -35,7 +35,7 @@ if (isset($_SESSION['loginData']) && $_SESSION['loginData']['action'] == 'Login'
     if ($user->numRows) {
       $_SESSION['userdata'] = $user->data;
       unset($_SESSION['loginData']);
-      header('Location: ../job_post/job_proc.php?user_id='.md5($_SESSION['userdata']->id));
+      header('Location: ../job_post/job_proc.php?user_id='.$_SESSION['userdata']->id);
     } else {
       unset($_SESSION['loginData']);
       header("Location: ../../php/login.php");

@@ -61,7 +61,7 @@ class job_DBO
   function selectbyTitle($obj)
   {
     try {
-      $this->query = "SELECT jp.title, jp.posted_date, jp.location, jp.salary, jp.job_type, u.username, jp.description, c.description AS `desc`, c.website, c.company_email
+      $this->query = "SELECT jp.id, jp.title, jp.posted_date, jp.location, jp.salary, jp.job_type, u.username, jp.description, c.description AS `desc`, c.website, c.company_email
         FROM job_postings AS jp
         JOIN companies AS c ON c.id = jp.company_id
         JOIN users AS u ON u.id = c.user_id WHERE jp.title=:title";

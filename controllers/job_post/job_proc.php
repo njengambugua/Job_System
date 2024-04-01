@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (isset($_GET['user_id'])) {
     if ($job->retrieve()) {
       $_SESSION['job_data'] = $job->data;
+      $_SESSION['user_id'] = $_GET['user_id'];
       header('Location: ../../php/applicant/applicant.php');
     }
   }

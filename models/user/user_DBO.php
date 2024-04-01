@@ -38,7 +38,7 @@ class UserDBO
   function select($obj)
   {
     try {
-      $this->sql = "SELECT * FROM users WHERE username=:username AND password=:password";
+      $this->sql = "SELECT * FROM users AS u JOIN applicant AS a ON u.id=a.user_id WHERE username=:username AND password=:password";
       $this->stmt = $this->conn->prepare($this->sql);
       $this->stmt->bindParam(':username', $obj->username);
       $this->stmt->bindParam(':password', $obj->password);
