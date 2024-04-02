@@ -16,4 +16,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       echo $application->error;
     }
   }
+
+  if (isset($_GET['applicant_id'])) {
+    $id = $_GET['applicant_id'];
+    if ($application->retrieve($id)) {
+      if ($application->numRows) {
+        $_SESSION['application_data'] = $application->data;
+        header('Location: ../../php/applicant/applicant_applications.php');
+      }
+    } else{
+      $_SESSION['error'] = $application->error;
+    }
+  }
+
+  if (isset($_GET['company_id'])) {
+    $id = $_GET['company_id'];
+    if ($application->retrievebyCompany($id)) {
+      if ($application->numRows) {
+        $_SESSION['application_data'] = $application->data;
+        header('Location: ../../php/employer/companies_view_applications.php');
+      }
+    } else{
+      $_SESSION['error'] = $application->error;
+    }
+  }
 }

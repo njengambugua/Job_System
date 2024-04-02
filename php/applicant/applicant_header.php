@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +23,7 @@
             <ul class="nav">
               <li class="scroll-to-section"><a href="applicant.php">Home</a></li>
               <li class="scroll-to-section"><a href="../about.php">Career Tips</a></li>
-              <li class="scroll-to-section"><a href="applicant_applications.php">My Applications</a></li>
+              <li class="scroll-to-section"><a href="../../controllers/job_application/job_apply_proc.php?applicant_id=<?php echo $_SESSION['userdata']->id ?>">My Applications</a></li>
               <li class="has-sub">
                 <a href="javascript:void(0)">
                   <div class="top-nav">

@@ -1,7 +1,7 @@
 <?php
 include 'applicant_header.php';
 session_start();
-$job_data = (object)$_SESSION['job_data'];
+$job_data = (object)$_SESSION['application_data'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +30,7 @@ $job_data = (object)$_SESSION['job_data'];
   <link rel="stylesheet" href="../../css/applicant/slick.css">
   <link rel="stylesheet" href="../../css/applicant/nice-select.css">
   <link rel="stylesheet" href="../../css/applicant/style.css">
+  <link rel="stylesheet" href="../../css/badge.css">
 </head>
 
 <body>
@@ -42,6 +43,57 @@ $job_data = (object)$_SESSION['job_data'];
             <div class="div-dec"></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Applications section start -->
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th> Job </th>
+              <th> Company </th>
+              <th> Applicant </th>
+              <th> Job Type </th>
+              <th> Status </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <form action="" method="post">
+              <?php foreach ($job_data as $job) { ?>
+
+                <tr>
+
+                  <td> <?php echo $job->id ?></td>
+                  <td> <?php echo $job->title ?></td>
+                  <td> <?php echo $job->username ?></td>
+                  <td> <?php echo $job->firstname . " " . $job->lastname ?></td>
+                  <td> <?php echo $job->job_type ?></td>
+                  <td>
+                    <?php if ($job->status == 'pending') {
+                      echo " <label class='badge badge-gradient-warning'>Pending</label>";
+                    } elseif ($job->status == 'rejected') {
+                      echo " <label class='badge badge-gradient-danger'>Rejected</label>";
+                    } elseif ($job->status == 'hired') {
+                      echo " <label class='badge badge-gradient-success'>Rejected</label>";
+                    }
+                    ?>
+
+                  </td>
+
+
+                </tr>
+              <?php } ?>
+            </form>
+
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

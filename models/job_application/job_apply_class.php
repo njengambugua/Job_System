@@ -39,4 +39,28 @@ class Job_apply
       return false;
     }
   }
+
+  function retrieve($id)
+  {
+    if ($this->applicationObj->select($id)) {
+      $this->numRows = $this->applicationObj->numRows;
+      $this->data = $this->applicationObj->res;
+      return true;
+    } else {
+      $this->error = $this->applicationObj->error;
+      return false;
+    }
+  }
+
+  function retrievebyCompany($id)
+  {
+    if ($this->applicationObj->selectbyCompany($id)) {
+      $this->numRows = $this->applicationObj->numRows;
+      $this->data = $this->applicationObj->res;
+      return true;
+    } else {
+      $this->error = $this->applicationObj->error;
+      return false;
+    }
+  }
 }
